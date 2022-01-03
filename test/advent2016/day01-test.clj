@@ -18,9 +18,9 @@
     (is (= 2 (t/distance day01-sample2)))
     (is (= 12  (t/distance day01-sample3)))))
 
-;; (deftest day01-part1-soln
-;;   (testing "Reproduces the answer for day01, part1"
-;;     (is (= 1292 (t/day01-part1-soln)))))
+(deftest day01-part1-soln
+  (testing "Reproduces the answer for day01, part1"
+    (is (= 241 (t/day01-part1-soln)))))
 
 ;; (deftest day01-part2-soln
 ;;   (testing "Reproduces the answer for day01, part2"
