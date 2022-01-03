@@ -44,3 +44,36 @@
 (defn day01-part1-soln
   []
   (distance day01-input))
+
+(defn all-steps
+  [{:keys [visited heading]} {:keys [dir dist]}]
+  (let [new-heading (rotate heading dir)
+        pos         (last visited)
+        steps       (range 1 (inc dist))]
+    {:heading new-heading
+     :visited (into visited
+                    (case new-heading
+                      :north (map #(update pos 1 + %) steps)
+                      :south (map #(update pos 1 - %) steps)
+                      :east  (map #(update pos 0 + %) steps)
+                      :west  (map #(update pos 0 - %) steps)))}))
+
+(defn all-visited
+  [steps]
+  (reduce all-steps {:visited [[0 0]] :heading :north} steps))
+
+(defn first-duplicate
+  [coll]
+  (loop [seen #{} xs coll]
+    (let [x (first xs)]
+      (if (seen x)
+        x
+        (recur (conj seen x) (rest xs))))))
+
+(defn distance-to-first-duplicate
+  [steps]
+  (-> steps all-visited :visited first-duplicate (math/manhattan [0 0])))
+
+(defn day01-part2-soln
+  []
+  (distance-to-first-duplicate day01-input))
