@@ -1,12 +1,6 @@
 (ns advent2016.day02
   (:require [advent-utils.core :as u]))
 
-(def day02-sample
-  ["ULL"
-   "RRDDD"
-   "LURDL"
-   "UUUUD"])
-
 (def day02-input (u/puzzle-input "day02-input.txt"))
 
 (def square-keypad
